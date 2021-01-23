@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PicoYPlaca"
+    }
+  },
+  "defaultProject": "PicoYPlaca",
+  "cli": {
+    "analytics": false
+  }
 }

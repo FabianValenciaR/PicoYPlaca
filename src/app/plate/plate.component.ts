@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-plate',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plate.component.scss']
 })
 export class PlateComponent implements OnInit {
+  // Input that will receive the plate identifier from a parent component
+  @Input() plate: string = "";
 
   constructor() { }
 

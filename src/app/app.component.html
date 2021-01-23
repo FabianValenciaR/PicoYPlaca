@@ -27,67 +27,93 @@
   </div>
 </div>
 
-<div class="p-3">
-  <!-- Plate Input -->
-  <div class="row justify-content-center">
-    <span class="mr-4">Please insert your plate number</span>
-    <p-inputMask
-      required
-      minlength="6"
-      [(ngModel)]="this.plate"
-      mask="aaa-999?9"
-      #plateElement="ngModel"
-      (ngModelChange)="this.validatePlateInitial()"
-    ></p-inputMask>
-  </div>
-  <!-- Plate Validations -->
-  <div class="p-2 row justify-content-center">
-    <div
-      *ngIf="
-        plateElement.invalid && (plateElement.dirty || plateElement.touched)
-      "
-      class="alert alert-danger"
-    >
-      <div *ngIf="plateElement.errors.required">Plate is required.</div>
+<div class="container">
+  <div class="row">
+    <!-- Result Section -->
+    <div class="col-md-6">
+      <div class="p-1 can-drive-container row d-flex justify-content-around">
+        <span class="mr-3 can-drive">Can I Drive?</span>
+      </div>
+      <div class="pb-4 can-drive-container row d-flex justify-content-around">
+        <span
+          class="p-2 can-drive rounded text-white"
+          [ngClass]="{
+            'bg-danger': !this.canDrive,
+            'bg-success': this.canDrive
+          }"
+          >{{ this.canDrive ? "YES!" : "NO!" }}</span
+        >
+      </div>
     </div>
-    <div
-      *ngIf="plateElement.valid && !this.isInitialValid"
-      class="alert alert-danger"
-    >
-      <div>Plate's initial is not valid.</div>
-    </div>
-  </div>
+    <!-- Input Section -->
+    <div class="col-md-6">
+      <!-- Plate Input -->
+      <div class="row justify-content-center">
+        <span class="mr-4">Please insert your plate number</span>
+        <p-inputMask
+          required
+          minlength="6"
+          [(ngModel)]="this.plate"
+          mask="aaa-999?9"
+          #plateElement="ngModel"
+          (ngModelChange)="this.validatePlateInitial()"
+        ></p-inputMask>
+      </div>
+      <!-- Plate Validations -->
+      <div class="p-2 row justify-content-center">
+        <div
+          *ngIf="
+            plateElement.invalid && (plateElement.dirty || plateElement.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="plateElement.errors.required">Plate is required.</div>
+        </div>
+        <div
+          *ngIf="plateElement.valid && !this.isInitialValid"
+          class="alert alert-danger"
+        >
+          <div>Plate's initial is not valid.</div>
+        </div>
+      </div>
 
-  <!-- Date and Time Input -->
-  <div class="row justify-content-center">
-    <span class="mr-4">Please choose a date and time</span>
-    <p-calendar
-      required
-      [(ngModel)]="this.currentDate"
-      [showTime]="true"
-      inputId="date"
-      #dateElement="ngModel"
-    ></p-calendar>
-  </div>
-  <!-- Date and Time Validations -->
-  <div class="p-2 row justify-content-center">
-    <div
-      *ngIf="dateElement.invalid && (dateElement.dirty || dateElement.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="dateElement.errors.required">Date and Time are required.</div>
-    </div>
-  </div>
+      <!-- Date and Time Input -->
+      <div class="row justify-content-center">
+        <span class="mr-4">Please choose a date and time</span>
+        <p-calendar
+          required
+          [(ngModel)]="this.selectedDate"
+          [showTime]="true"
+          inputId="date"
+          #dateElement="ngModel"
+        ></p-calendar>
+      </div>
+      <!-- Date and Time Validations -->
+      <div class="p-2 row justify-content-center">
+        <div
+          *ngIf="
+            dateElement.invalid && (dateElement.dirty || dateElement.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="dateElement.errors.required">
+            Date and Time are required.
+          </div>
+        </div>
+      </div>
 
-  <!-- Submit Button -->
-  <div class="p-3 row justify-content-center">
-    <button
-      [disabled]="
-        plateElement.invalid || dateElement.invalid || !this.isInitialValid
-      "
-      class="btn btn-success"
-    >
-      Validate
-    </button>
+      <!-- Submit Button -->
+      <div class="p-3 row justify-content-center">
+        <button
+          [disabled]="
+            plateElement.invalid || dateElement.invalid || !this.isInitialValid
+          "
+          class="btn btn-success"
+          (click)="this.validatePicoPlaca()"
+        >
+          Validate
+        </button>
+      </div>
+    </div>
   </div>
 </div>

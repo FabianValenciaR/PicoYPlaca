@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { PlateService } from '../app/services/plate.service';
+import { PlateValidationRequest } from './models/plate-validation-req';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  canDrive: boolean = true;
   // Variable that will store the plate identifier as string
   plate: string = 'AAA-0000';
   // Variable that will store the date and time selected
-  currentDate: Date = new Date();
+  selectedDate: Date = new Date();
   // Flag that indicates if the initial letter of the plate is valid
   isInitialValid: boolean = true;
   // Array that has all the valid first letters of a ecuadorian plate
@@ -40,8 +42,11 @@ export class AppComponent {
     'Z',
   ];
 
+  constructor(private plateService: PlateService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    this.validatePicoPlaca();
+  }
 
   /**
    *Validates that the initial letter of the plate is a valid one
@@ -55,5 +60,22 @@ export class AppComponent {
     } else {
       this.isInitialValid = false;
     }
+  }
+
+  /**
+   *Sends the request to plate.service to validate Pico&Placa
+   *
+   * @memberof AppComponent
+   */
+  validatePicoPlaca() {
+    let plateValidationReq: PlateValidationRequest = {
+      plate: this.plate,
+      daySelected: this.selectedDate.getDay(),
+      timeSelected: this.selectedDate.toLocaleTimeString('EC-ec', {
+        hour12: false,
+      }),
+    };
+
+    this.canDrive = this.plateService.validatePicoPlaca(plateValidationReq);
   }
 }

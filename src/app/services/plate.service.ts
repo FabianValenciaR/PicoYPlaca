@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { RestrictionDay } from '../models/restriction-day';
+import { PlateValidationRequest } from '../models/plate-validation-req';
 @Injectable({
   providedIn: 'root',
 })
 export class PlateService {
-  canDrive: boolean = false;
+  // Stores the restrictions rules for Pico&Placa
   restrictionDays: RestrictionDay[] = [
     {
       id: 1,
@@ -35,13 +36,18 @@ export class PlateService {
 
   constructor() {}
 
-  validatePicoPlaca(plate: string, selectedDate: Date): boolean {
-    let lastDigit: number = Number(plate.charAt(plate.length - 1));
-    let daySelected: number = selectedDate.getDay();
-    let timeSelected = selectedDate.toLocaleTimeString('EC-ec', {
-      hour12: false,
-    });
-
+  /**
+   *Service that returns whether the user can be driving
+   *
+   * @param {PlateValidationRequest} plateValidationReq
+   * @return {*}  {boolean}
+   * @memberof PlateService
+   */
+  validatePicoPlaca(plateValidationReq: PlateValidationRequest): boolean {
+    let canDrive: boolean;
+    let lastDigit: number = Number(
+      plateValidationReq.plate.charAt(plateValidationReq.plate.length - 1)
+    );
     // Get the restriction day by plate's last digit
     let restrictedDay = this.restrictionDays.find((d) =>
       d.lastDigits.includes(lastDigit)
@@ -49,17 +55,17 @@ export class PlateService {
 
     // Validate hours and restrictedDay
     if (
-      (timeSelected >= '07:00:00' &&
-        timeSelected <= '09:30:00' &&
-        restrictedDay == daySelected) ||
-      (timeSelected >= '16:00:00' &&
-        timeSelected <= '19:30:00' &&
-        restrictedDay == daySelected)
+      (plateValidationReq.timeSelected >= '07:00:00' &&
+        plateValidationReq.timeSelected <= '09:30:00' &&
+        restrictedDay == plateValidationReq.daySelected) ||
+      (plateValidationReq.timeSelected >= '16:00:00' &&
+        plateValidationReq.timeSelected <= '19:30:00' &&
+        restrictedDay == plateValidationReq.daySelected)
     ) {
-      this.canDrive = false;
+      canDrive = false;
     } else {
-      this.canDrive = true;
+      canDrive = true;
     }
-    return this.canDrive;
+    return canDrive;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlateService } from '../app/services/plate.service';
+import { PlateValidationRequest } from './models/plate-validation-req';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -67,9 +68,14 @@ export class AppComponent implements OnInit {
    * @memberof AppComponent
    */
   validatePicoPlaca() {
-    this.canDrive = this.plateService.validatePicoPlaca(
-      this.plate,
-      this.selectedDate
-    );
+    let plateValidationReq: PlateValidationRequest = {
+      plate: this.plate,
+      daySelected: this.selectedDate.getDay(),
+      timeSelected: this.selectedDate.toLocaleTimeString('EC-ec', {
+        hour12: false,
+      }),
+    };
+
+    this.canDrive = this.plateService.validatePicoPlaca(plateValidationReq);
   }
 }

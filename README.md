@@ -9,6 +9,12 @@ Welcome to "PicoYPlaca" to run the project locally you will have to perform the 
 
 The project was also deploy on GitHub Pages. You can visit it on the following link: https://fabianvalenciar.github.io/PicoYPlaca/
 
+# Features
+- Visual ecuadorian plate builder
+- Input validations
+- Unit tests
+- Responsive design
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).

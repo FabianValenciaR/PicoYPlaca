@@ -44,6 +44,7 @@ export class PlateService {
    * @memberof PlateService
    */
   validatePicoPlaca(plateValidationReq: PlateValidationRequest): boolean {
+    console.log("Logger:", "Receiving object on service")
     let canDrive: boolean;
     let lastDigit: number = Number(
       plateValidationReq.plate.charAt(plateValidationReq.plate.length - 1)
@@ -53,6 +54,7 @@ export class PlateService {
       d.lastDigits.includes(lastDigit)
     ).id;
 
+    console.log("Logger:", "Starting validations")
     // Validate hours and restrictedDay
     if (
       (plateValidationReq.timeSelected >= '07:00:00' &&
@@ -66,6 +68,7 @@ export class PlateService {
     } else {
       canDrive = true;
     }
+    console.log("Logger:", "Returning validation")
     return canDrive;
   }
 }

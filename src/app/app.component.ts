@@ -10,9 +10,10 @@ export class AppComponent implements OnInit {
   canDrive: boolean = true;
   // Variable that will store the plate identifier as string
   plate: string = 'AAA-0000';
-  // Variable that will store the date and time selected
+  // Variable that will store the date selected
   selectedDate: Date = new Date();
-  date: string = "";
+  // Variable that will store the time selected
+  selectedTime: Date = new Date();
   // Flag that indicates if the initial letter of the plate is valid
   isInitialValid: boolean = true;
   // Array that has all the valid first letters of a ecuadorian plate
@@ -69,10 +70,11 @@ export class AppComponent implements OnInit {
    * @memberof AppComponent
    */
   validatePicoPlaca() {
+    console.log("Logger:", "Building object and sending it to the service validator")
     let plateValidationReq: PlateValidationRequest = {
       plate: this.plate,
       daySelected: this.selectedDate.getDay(),
-      timeSelected: this.selectedDate.toLocaleTimeString('EC-ec', {
+      timeSelected: this.selectedTime.toLocaleTimeString('EC-ec', {
         hour12: false,
       }),
     };

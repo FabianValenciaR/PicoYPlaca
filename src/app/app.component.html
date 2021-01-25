@@ -66,12 +66,12 @@
 
           <!-- Date and Time Input -->
           <div class="row justify-content-center">
-            <span class="mr-4">Please choose a date and time</span>
+            <span class="mr-4">Please choose a date</span>
             <p-calendar
               required
-              [touchUI]="true"
+              [touchUI]="false"
               [(ngModel)]="this.selectedDate"
-              [showTime]="true"
+              [showTime]="false"
               inputId="date"
               #dateElement="ngModel"
             ></p-calendar>
@@ -89,6 +89,18 @@
                 Date and Time are required.
               </div>
             </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <span class="mr-4">Please choose a time</span>
+            <p-calendar
+              required
+              [touchUI]="false"
+              [(ngModel)]="this.selectedTime"
+              [timeOnly]="true"
+              inputId="date"
+              #dateElement="ngModel"
+            ></p-calendar>
           </div>
 
           <!-- Submit Button -->

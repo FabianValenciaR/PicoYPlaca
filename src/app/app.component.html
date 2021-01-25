@@ -1,9 +1,9 @@
 <!-- Visual Plate Component -->
-<div class="plate-container p-5 d-flex justify-content-center">
+<div class="plate-container p-2 d-flex justify-content-center">
   <app-plate [plate]="this.plate"></app-plate>
 </div>
 
-<div class="pt-5 container">
+<div class="pt-3 container">
   <div class="row">
     <!-- Result Section -->
     <div class="col-md-6  d-flex align-items-stretch justify-content-center">
@@ -69,6 +69,7 @@
             <span class="mr-4">Please choose a date and time</span>
             <p-calendar
               required
+              [touchUI]="true"
               [(ngModel)]="this.selectedDate"
               [showTime]="true"
               inputId="date"

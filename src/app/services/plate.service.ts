@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { RestrictionDay } from '../models/restriction-day';
-import { PlateValidationRequest } from '../models/plate-validation-req';
+import { RestrictionDay } from 'src/app/models/restriction-day';
+import { PlateValidationRequest } from 'src/app/models/plate-validation-req';
 @Injectable({
   providedIn: 'root',
 })

@@ -76,7 +76,7 @@
               #dateElement="ngModel"
             ></p-calendar>
           </div>
-          <!-- Date and Time Validations -->
+          <!-- Date Validations -->
           <div class="p-2 row justify-content-center">
             <div
               *ngIf="
@@ -86,7 +86,7 @@
               class="alert alert-danger"
             >
               <div *ngIf="dateElement.errors.required">
-                Date and Time are required.
+                Date is required.
               </div>
             </div>
           </div>
@@ -99,8 +99,23 @@
               [(ngModel)]="this.selectedTime"
               [timeOnly]="true"
               inputId="date"
-              #dateElement="ngModel"
+              #timeElement="ngModel"
             ></p-calendar>
+          </div>
+
+          <!-- Time Validations -->
+          <div class="p-2 row justify-content-center">
+            <div
+              *ngIf="
+                timeElement.invalid &&
+                (timeElement.dirty || timeElement.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="timeElement.errors.required">
+                Time is required.
+              </div>
+            </div>
           </div>
 
           <!-- Submit Button -->

@@ -7,7 +7,7 @@ Welcome to "PicoYPlaca" to run the project locally you will have to perform the 
 - Now you will be able to run the project locally by executing "ng serve --open"
 - By default a new browser tab will be open on "http://localhost:4200/"
 
-The project was also deploy on GitHub Pages. You can visit it on the following link: https://github.com/FabianValenciaR/PicoYPlaca
+The project was also deploy on GitHub Pages. You can visit it on the following link: https://fabianvalenciar.github.io/PicoYPlaca/
 
 ## Running unit tests
 

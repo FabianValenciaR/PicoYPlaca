@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PlateService } from '../app/services/plate.service';
-import { PlateValidationRequest } from './models/plate-validation-req';
+import { PlateService } from 'src/app/services/plate.service';
+import { PlateValidationRequest } from 'src/app/models/plate-validation-req';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   plate: string = 'AAA-0000';
   // Variable that will store the date and time selected
   selectedDate: Date = new Date();
+  date: string = "";
   // Flag that indicates if the initial letter of the plate is valid
   isInitialValid: boolean = true;
   // Array that has all the valid first letters of a ecuadorian plate
